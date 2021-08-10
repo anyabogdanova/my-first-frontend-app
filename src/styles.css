@@ -1,0 +1,23 @@
+:root {
+    width: 700px;
+  }
+  
+  .parent-task-tracker {
+    position: relative;
+    background: rgb(255, 234, 237);
+    left: 10px;
+  }
+  
+  .task-parent {
+    position: relative;
+    background: rgb(227, 227, 227);
+    left: 20px;
+    width: 500px;
+  }
+  
+  .header {
+    position: relative;
+    left: 20px;
+  }
+  
+  
