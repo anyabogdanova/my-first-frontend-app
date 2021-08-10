@@ -5,7 +5,7 @@ const Task = ({ id, name, description, completed }) => (
   <div className="task-parent">
     <h3>{name}</h3>
     <div>{description}</div>
-    {completed ? <div>Completed</div> : <div>Not Completed</div>} 
+    {<div>{completed ? "Completed" : "Not Completed"}</div>} 
     <button onClick={() => handleClick({id: id, completed: completed})}>Complete</button>
   </div>
 )
@@ -44,22 +44,22 @@ class TodoList extends React.Component{
     ]
   }
 
-  TaskList = (tasks) => {
-    return (
-      <div>
-        {tasks.map(it => <Task key={it.id} id={it.id} name={it.name} description={it.description} completed={it.completed} />)}
-      </div>
-    )
-  }
-
   render () {
     return (
       <div className="parent-task-tracker">
         <h1 className="header">Task Tracker</h1>
-        <div>{this.TaskList(this.state.tasks)}</div>
+        <div>{TaskList(this.state.tasks)}</div>
       </div>
     )
   }
+}
+
+const TaskList = (tasks) => {
+  return (
+    <div>
+      {tasks.map(it => <Task key={it.id} id={it.id} name={it.name} description={it.description} completed={it.completed} />)}
+    </div>
+  )
 }
 
 const App = () => {
