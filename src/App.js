@@ -1,25 +1,72 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './styles.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello Valera!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Task = ({ id, name, description, completed }) => (
+  <div className="task-parent">
+    <h3>{name}</h3>
+    <div>{description}</div>
+    <div>{completed ? "Completed" : "Not Completed"}</div>
+    <button onClick={() => handleClick({id: id, completed: completed})}>Complete</button>
+  </div>
+)
+
+const handleClick = ({id, completed}) => {
+  console.log('Task ' + id + ' completed status = ' + completed)
+}
+
+class TodoList extends React.Component {
+
+  render () {
+    return (
+      <div className="parent-task-tracker">
+        <h1 className="header">Task Tracker</h1>
+        <TaskList />
+      </div>
+    )
+  }
+}
+
+class TaskList extends React.Component {
+  state = {
+    tasks: [
+      {
+        "id": 1,
+        "name": "Wash the curtains",
+        "description": 'living room + bedroom curtains',
+        "completed": true
+      },
+      {
+        "id": 2,
+        "name": "Wash the dishes",
+        "description": 'kitchen',
+        "completed": false
+      },
+      {
+        "id": 3,
+        "name": "Buy new pillows",
+        "description": 'ikea',
+        "completed": false
+      },
+      {
+        "id": 4,
+        "name": "HW3 React",
+        "description": 'Hi Valera',
+        "completed": true
+      }
+    ]
+  }
+
+  render () {
+    return (
+      <div>
+        {this.state.tasks.map(it => <Task key={it.id} id={it.id} name={it.name} description={it.description} completed={it.completed} />)}
+      </div>
+    )
+  }
+}
+
+const App = () => {
+    return <TodoList />
 }
 
 export default App;
